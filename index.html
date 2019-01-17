@@ -12,6 +12,7 @@
 		height: 200px;
 		background-color:#333;
 	}
+	.result{border:2px solid #f00;padding:20px;}
 	button{position: relative;z-index: 999;}
 </style>
 </head>
@@ -19,8 +20,8 @@
 <body>
 	<div class="border" style="display: none;left:0;position:absolute;">
 	</div>
-	<button class="">Click Here</button>
-	
+	<button class="">Start Animation</button>
+	<div class="result"></div>
 
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script>
@@ -54,14 +55,22 @@
 
     			
     			var text = $(this).html();
-    			if(text == 'Click Here'){
-    				text="Submit";
+    			if(text == 'Start Here'){
+    				text="stop";
     			}
     			else{
-    				text="Click Here";
+    				text="Start Here";
     			}
     			$(this).html(text);
     		});
+		});
+
+		$(document).ready(function() {
+			var persons = ['jai','raj', 'ramesh'];
+			console.log(persons[1]); 
+			for(var i=0; i<persons.length; i++){
+				$('.result').append(persons[i]);
+			}
 		});
 	</script>
 </body>
