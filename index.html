@@ -25,11 +25,7 @@
 
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script>
-		/* $(document).ready(function() {
-			$("button").click(function() {
-				$('.border').slideUp(300);
-			});
-		}); */
+		
 		$(document).ready(function() {
     		$('button').click(function(){
     			console.log('test');
@@ -51,9 +47,7 @@
 	    				}, 1000);
 
 	    		});
-	    		
 
-    			
     			var text = $(this).html();
     			if(text == 'Start Here'){
     				text="stop";
@@ -68,9 +62,11 @@
 		$(document).ready(function() {
 			var persons = ['jai','raj', 'ramesh'];
 			console.log(persons[1]); 
+			var personname = "";
 			for(var i=0; i<persons.length; i++){
-				$('.result').append(persons[i]);
+				personname=personname + ' ' + persons[i];
 			}
+			$('.result').text(personname); 
 		});
 	</script>
 </body>
