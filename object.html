@@ -22,23 +22,33 @@
 	</table>
 
 	<script type="text/javascript">
-		//var person = {"Name" : "Ramesh", "Surname" : "Singh", "Age" : 21};
-		var persons = [
-			{"Name" : "Ramesh", "Surname" : "Singh", "Age" : 21},
-			{"Name" : "Suresh", "Surname" : "Chawla", "Age" : 23},
-		];
-		//console.log(person.Name + " " + person.Surname);
-		//console.log(persons);
-		var length = Object.keys(persons).length;
-		if(length == 0){
-			$("#detail tbody").append('<tr><td colspan="3" style="text-align: center;">No Content</td></tr>');
-		}
-		else{
-			for(var i=0; i<length; i++){
-				var data='<tr><td>' + persons[i].Name + '</td><td>' + persons[i].Surname +'</td><td>'+ persons[i].Age +'</td><td><a href="#" id="edit">Edit</a></td></tr>';
-				$("#detail tbody").append(data);
+		$(document).ready(function() {
+			$(document).on('click','.del',function() {
+				$(this).closest("tr").remove();
+				return false;
+			});	
+			//var person = {"Name" : "Ramesh", "Surname" : "Singh", "Age" : 21};
+			var persons = [
+				{"Name" : "Ramesh", "Surname" : "Singh", "Age" : 21},
+				{"Name" : "Suresh", "Surname" : "Chawla", "Age" : 23},
+			];
+			//console.log(person.Name + " " + person.Surname);
+			//console.log(persons);
+			var length = Object.keys(persons).length;
+			if(length == 0){
+				$("#detail tbody").append('<tr><td colspan="3" style="text-align: center;">No Content</td></tr>');
 			}
-		}
+			else{
+					var data = "";
+				for(var i=0; i<length; i++){
+					data=data+'<tr><td>' + persons[i].Name + '</td><td>' + persons[i].Surname +'</td><td>'+ persons[i].Age +'</td><td><a href="#" id="edit">Edit</a> <a href="#" class="del">Delete</a></td></tr>';
+					
+				}
+				$("#detail tbody").append(data);
+
+			}
+			
+		});
 	</script>
 </body>
 </html>
