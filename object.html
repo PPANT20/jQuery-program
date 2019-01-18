@@ -44,24 +44,36 @@
 			else{
 				var data = "";
 				for(var i=0; i<length; i++){
-					data=data+'<tr><td>' + persons[i].Name + '</td><td>' + persons[i].Surname +'</td><td>'+ persons[i].Age +'</td><td><a href="#" class="edit">Edit</a> <a href="#" class="del">Delete</a></td></tr>';
+					data=data+'<tr><td class="nameTd">' + persons[i].Name + '</td><td class="surnameTd">' + persons[i].Surname +'</td><td class="ageTd">'+ persons[i].Age +'</td><td><a href="#" class="edit">Edit</a> <a href="#" class="save" style="display:none;">Save</a> <a href="#" class="del">Delete</a></td></tr>';
 				}
 				$("#detail tbody").append(data);
 			}
 			$(".addData").click(function(){
-				$("#detail tbody").append('<tr><td class="nameTd"><input type="Name" placeholder="Name" class="form-control name"></td><td class="surnameTd"><input type="Surname" placeholder="Surname" class="form-control surname"></td><td class="ageTd"><input type="number" placeholder="Age" class="form-control age"></td><td><a href="#" class="edit">Edit</a> <a href="#" class="save">Save</a> <a href="#" class="del">Delete</a></td></tr>')
+				$("#detail tbody").append('<tr><td class="nameTd"><input type="Name" placeholder="Name" class="form-control name"></td><td class="surnameTd"><input type="Surname" placeholder="Surname" class="form-control surname"></td><td class="ageTd"><input type="number" placeholder="Age" class="form-control age"></td><td><a href="#" class="edit" style="display:none;">Edit</a> <a href="#" class="save">Save</a> <a href="#" class="del">Delete</a></td></tr>')
 			});
 
 			$(document).on('click','.save',function() {
 				var name = $(this).closest("tr").find(".name").val();
 				var surname = $(this).closest("tr").find(".surname").val();
 				var age = $(this).closest("tr").find(".age").val();
-				console.log(name + surname + age);
+				//console.log(name + surname + age);
 				$(this).closest("tr").find(".name, .surname, .age").remove();
 				$(this).closest("tr").find(".nameTd").text(name);
 				$(this).closest("tr").find(".surnameTd").text(surname);
 				$(this).closest("tr").find(".ageTd").text(age);
-				$(this).remove();
+				$('.edit').css('display','inline-block');
+				$(this).css('display','none');
+			});
+
+			$(document).on('click','.edit',function() {
+				var name = $(this).closest("tr").find(".nameTd").text();
+				var surname = $(this).closest("tr").find(".surnameTd").text();
+				var age = $(this).closest("tr").find(".ageTd").text();
+				$(this).closest("tr").find(".nameTd").html('<input type="text" class="form-control name" value="'+name+'">');
+				$(this).closest("tr").find(".surnameTd").html('<input class="form-control surname" type="text" value="'+surname+'">');
+				$(this).closest("tr").find(".ageTd").html('<input class="form-control age" type="text" value="'+age+'">');
+
+				$(".save").css('display','inline-block');
 			});
 		});
 	</script>
