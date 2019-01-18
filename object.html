@@ -9,27 +9,30 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 </head>
 <body>
-
-	<table class="table" id="detail">
-		<thead>
-			<th>Name</th>
-			<th>Surname</th>
-			<th>Age</th>
-		</thead>
-		<tbody>
-			
-		</tbody>
-	</table>
+	<div class="container">
+		<table class="table table-striped table-bordered" id="detail">
+			<thead>
+				<th>Name</th>
+				<th>Surname</th>
+				<th>Age</th>
+				<th>Actions</th>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
+		<button class="addData">Add Data</button>
+	</div>
 
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$(document).on('click','.del',function() {
 				$(this).closest("tr").remove();
 				return false;
-			});	
+			});
 			//var person = {"Name" : "Ramesh", "Surname" : "Singh", "Age" : 21};
 			var persons = [
-				{"Name" : "Ramesh", "Surname" : "Singh", "Age" : 21},
+				{Name : "Ramesh", "Surname" : "Singh", "Age" : 21},
 				{"Name" : "Suresh", "Surname" : "Chawla", "Age" : 23},
 			];
 			//console.log(person.Name + " " + person.Surname);
@@ -39,15 +42,27 @@
 				$("#detail tbody").append('<tr><td colspan="3" style="text-align: center;">No Content</td></tr>');
 			}
 			else{
-					var data = "";
+				var data = "";
 				for(var i=0; i<length; i++){
-					data=data+'<tr><td>' + persons[i].Name + '</td><td>' + persons[i].Surname +'</td><td>'+ persons[i].Age +'</td><td><a href="#" id="edit">Edit</a> <a href="#" class="del">Delete</a></td></tr>';
-					
+					data=data+'<tr><td>' + persons[i].Name + '</td><td>' + persons[i].Surname +'</td><td>'+ persons[i].Age +'</td><td><a href="#" class="edit">Edit</a> <a href="#" class="del">Delete</a></td></tr>';
 				}
 				$("#detail tbody").append(data);
-
 			}
-			
+			$(".addData").click(function(){
+				$("#detail tbody").append('<tr><td class="nameTd"><input type="Name" placeholder="Name" class="form-control name"></td><td class="surnameTd"><input type="Surname" placeholder="Surname" class="form-control surname"></td><td class="ageTd"><input type="number" placeholder="Age" class="form-control age"></td><td><a href="#" class="edit">Edit</a> <a href="#" class="save">Save</a> <a href="#" class="del">Delete</a></td></tr>')
+			});
+
+			$(document).on('click','.save',function() {
+				var name = $(this).closest("tr").find(".name").val();
+				var surname = $(this).closest("tr").find(".surname").val();
+				var age = $(this).closest("tr").find(".age").val();
+				console.log(name + surname + age);
+				$(this).closest("tr").find(".name, .surname, .age").remove();
+				$(this).closest("tr").find(".nameTd").text(name);
+				$(this).closest("tr").find(".surnameTd").text(surname);
+				$(this).closest("tr").find(".ageTd").text(age);
+				$(this).remove();
+			});
 		});
 	</script>
 </body>
