@@ -15,6 +15,7 @@
 	.result{border:2px solid #f00;padding:20px;}
 	button{position: relative;z-index: 999;}
 </style>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 
 <body>
@@ -23,9 +24,8 @@
 	<button class="">Start Animation</button>
 	<div class="result"></div>
 
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	
 	<script>
-		
 		$(document).ready(function() {
     		$('button').click(function(){
     			console.log('test');
@@ -67,6 +67,8 @@
 				personname=personname + ' ' + persons[i];
 			}
 			$('.result').text(personname); 
+
+
 		});
 	</script>
 </body>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Object jQuery Examples</title>
+<style></style>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</head>
+<body>
+
+	<table class="table" id="detail">
+		<thead>
+			<th>Name</th>
+			<th>Surname</th>
+			<th>Age</th>
+		</thead>
+		<tbody>
+			
+		</tbody>
+	</table>
+
+	<script type="text/javascript">
+		//var person = {"Name" : "Ramesh", "Surname" : "Singh", "Age" : 21};
+		var persons = [
+			{"Name" : "Ramesh", "Surname" : "Singh", "Age" : 21},
+			{"Name" : "Suresh", "Surname" : "Chawla", "Age" : 23},
+		];
+		//console.log(person.Name + " " + person.Surname);
+		//console.log(persons);
+		var length = Object.keys(persons).length;
+		if(length == 0){
+			$("#detail tbody").append('<tr><td colspan="3" style="text-align: center;">No Content</td></tr>');
+		}
+		else{
+			for(var i=0; i<length; i++){
+				var data='<tr><td>' + persons[i].Name + '</td><td>' + persons[i].Surname +'</td><td>'+ persons[i].Age +'</td><td><a href="#" id="edit">Edit</a></td></tr>';
+				$("#detail tbody").append(data);
+			}
+		}
+	</script>
+</body>
+</html>
