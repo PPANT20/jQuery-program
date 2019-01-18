@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>JQuery Examples</title>
+<style>
+	body{margin:0;padding:0;}
+	*{box-sizing: border-box;}
+	.border{
+		border:2px solid #000;
+		width: 200px;
+		height: 200px;
+		background-color:#333;
+	}
+	.result{border:2px solid #f00;padding:20px;}
+	button{position: relative;z-index: 999;}
+</style>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+	<div class="border" style="display: none;left:0;position:absolute;">
+	</div>
+	<button class="">Start Animation</button>
+	<div class="result"></div>
+
+	
+	<script>
+		$(document).ready(function() {
+    		$('button').click(function(){
+    			console.log('test');
+    			$(".border").delay(2000).slideDown().animate({
+	    			left:'100%',
+	    			opacity: '0.5',
+	    			height: '400px',
+	    			width: '400px',
+	    			marginLeft:'-400px',
+	    			backgroundColor:'#f00'
+	    		},1000,function(){
+	    				$(this).css({'backgroundColor':'red', 'opacity':'1'}).delay(2000).animate({
+	    					left:'0%',
+			    			opacity: '0',
+			    			height: '200px',
+			    			width: '200px',
+			    			marginLeft:'0px',
+			    			display:'none'
+	    				}, 1000);
+
+	    		});
+
+    			var text = $(this).html();
+    			if(text == 'Start Here'){
+    				text="stop";
+    			}
+    			else{
+    				text="Start Here";
+    			}
+    			$(this).html(text);
+    		});
+		});
+
+		$(document).ready(function() {
+			var persons = ['jai','raj', 'ramesh'];
+			console.log(persons[1]); 
+			var personname = "";
+			for(var i=0; i<persons.length; i++){
+				personname=personname + ' ' + persons[i];
+			}
+			$('.result').text(personname); 
+
+
+		});
+	</script>
+</body>
+</html>

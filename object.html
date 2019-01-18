@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Object jQuery Examples</title>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<style>
+	h2{
+		margin:20px 0;
+	}
+</style>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class="container">
+		<h2>Add, remove and edit functionality in table by jQuery.</h2>
+		<table class="table table-striped table-bordered" id="detail">
+			<thead>
+				<th>Name</th>
+				<th>Surname</th>
+				<th>Age</th>
+				<th>Actions</th>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
+		<button class="addData btn btn-primary">Add Data</button>
+	</div>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(document).on('click','.del',function() {
+				if($('tbody tr').length > 1){
+					$(this).closest("tr").remove();		
+				}
+
+				if($('tbody tr').length == 1){
+						$('.del').css('display','none');
+				}
+				return false;
+			});
+			//var person = {"Name" : "Ramesh", "Surname" : "Singh", "Age" : 21};
+			var persons = [
+				{Name : "Ramesh", "Surname" : "Singh", "Age" : 21},
+				{"Name" : "Suresh", "Surname" : "Chawla", "Age" : 23},
+			];
+			//console.log(person.Name + " " + person.Surname);
+			//console.log(persons);
+			var length = Object.keys(persons).length;
+			if(length == 0){
+				$("#detail tbody").append('<tr><td colspan="3" style="text-align: center;">No Content</td></tr>');
+			}
+			else{
+				var data = "";
+				for(var i=0; i<length; i++){
+					data=data+'<tr><td class="nameTd">' + persons[i].Name + '</td><td class="surnameTd">' + persons[i].Surname +'</td><td class="ageTd">'+ persons[i].Age +'</td><td><div class="btn-group"><a href="#" class="edit btn btn-primary">Edit</a> <a href="#" class="save btn btn-success" style="display:none;">Save</a> <a href="#" class="del btn btn-danger">Delete</a></div></td></tr>';
+				}
+				$("#detail tbody").append(data);
+			}
+			$(".addData").click(function(){
+				$("#detail tbody").append('<tr><td class="nameTd"><input type="Name" placeholder="Name" class="form-control name"></td><td class="surnameTd"><input type="Surname" placeholder="Surname" class="form-control surname"></td><td class="ageTd"><input type="number" placeholder="Age" class="form-control age"></td><td><div class="btn-group"><a href="#" class="edit btn btn-primary" style="display:none;">Edit</a> <a href="#" class="save btn btn-success">Save</a> <a href="#" class="del btn btn-danger">Delete</a></div></td></tr>')
+			});
+
+			$(document).on('click','.save',function() {
+				var name = $(this).closest("tr").find(".name").val();
+				var surname = $(this).closest("tr").find(".surname").val();
+				var age = $(this).closest("tr").find(".age").val();
+				//console.log(name + surname + age);
+				$(this).closest("tr").find(".name, .surname, .age").remove();
+				$(this).closest("tr").find(".nameTd").text(name);
+				$(this).closest("tr").find(".surnameTd").text(surname);
+				$(this).closest("tr").find(".ageTd").text(age);
+				$('.edit').css('display','inline-block');
+				$(this).css('display','none');
+			});
+
+			$(document).on('click','.edit',function() {
+				var name = $(this).closest("tr").find(".nameTd").text();
+				var surname = $(this).closest("tr").find(".surnameTd").text();
+				var age = $(this).closest("tr").find(".ageTd").text();
+				$(this).closest("tr").find(".nameTd").html('<input type="text" class="form-control name" value="'+name+'">');
+				$(this).closest("tr").find(".surnameTd").html('<input class="form-control surname" type="text" value="'+surname+'">');
+				$(this).closest("tr").find(".ageTd").html('<input class="form-control age" type="text" value="'+age+'">');
+
+				$(this).closest("tr").find(".save").css('display','inline-block');
+			});
+
+			
+
+		});
+	</script>
+</body>
+</html>

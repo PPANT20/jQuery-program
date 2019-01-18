@@ -1,0 +1,26 @@
+{
+  "name": "jqueryprogram",
+  "version": "1.2.0",
+  "description": "program",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PPANT20/jQuery-program.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PPANT20/jQuery-program/issues"
+  },
+  "homepage": "https://github.com/PPANT20/jQuery-program#readme",
+  "devDependencies": {
+    "browser-sync": "^2.26.3",
+    "gulp": "^4.0.0",
+    "gulp-livereload": "^4.0.1",
+    "gulp-sass": "^4.0.2",
+    "sass": "^1.16.1"
+  }
+}
