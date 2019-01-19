@@ -20,7 +20,7 @@
 					Example
 					<img src="img/1.jpg" alt=""/>
 				</div></br></br>
-				<button class="btn btn-primary">Mouseover</div>
+				<button class="btn btn-primary">Mouse Over</div>
 			</div>
 		</div>
 	</div>
@@ -29,12 +29,14 @@
 		$(document).ready(function() {
 			$(".btn").mouseover(function(){
 				$(".border-box").addClass('show');
+				$(this).text('Mouse Leave');
 			});
 
 			$(".btn").mouseleave(function(){
 				$(".border-box").removeClass('show');
+				$(this).text('Mouse Over');
 			});
-			
+
 		});
 	</script>
 </body>
